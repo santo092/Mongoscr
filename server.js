@@ -41,10 +41,8 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 // Database configuration with mongoose
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect(MONGODB_URI);
-
+mongoose.connect("mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8");
+// mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8
 //mongoose.connect("mongodb://localhost/mongoscr");
 
 // Routes
