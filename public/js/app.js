@@ -1,5 +1,5 @@
 //Handle Scrape button
-$("#scrape").on("click", function() {
+$("#scrapedd").on("click", function() {
     $.ajax({
         method: "GET",
         url: "/scrape",
@@ -7,12 +7,7 @@ $("#scrape").on("click", function() {
         console.log(data)
         window.location = "/"
     })
-});
-
-//Set clicked nav option to active
-$(".navbar-nav li").click(function() {
-   $(".navbar-nav li").removeClass("active");
-   $(this).addClass("active");
+console.log("hello")
 });
 
 //Handle Save Article button
@@ -21,7 +16,7 @@ $(".save").on("click", function() {
     $.ajax({
         method: "POST",
         url: "/articles/save/" + thisId
-    }).done(function(data) {
+    }).then(function(data) {
         window.location = "/"
     })
 });
@@ -32,7 +27,7 @@ $(".delete").on("click", function() {
     $.ajax({
         method: "POST",
         url: "/articles/delete/" + thisId
-    }).done(function(data) {
+    }).then(function(data) {
         window.location = "/saved"
     })
 });
@@ -49,7 +44,7 @@ $(".saveNote").on("click", function() {
             data: {
               text: $("#noteText" + thisId).val()
             }
-          }).done(function(data) {
+          }).then(function(data) {
               // Log the response
               console.log(data);
               // Empty the notes section
@@ -67,7 +62,7 @@ $(".deleteNote").on("click", function() {
     $.ajax({
         method: "DELETE",
         url: "/notes/delete/" + noteId + "/" + articleId
-    }).done(function(data) {
+    }).then(function(data) {
         console.log(data)
         $(".modalNote").modal("hide");
         window.location = "/saved"

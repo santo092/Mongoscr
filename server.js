@@ -41,7 +41,12 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8");
+// mongoose.connect("mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8");
+
+var MONGODB_URI = "mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8"|| "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useCreateIndex: true });
+
 // mongodb://heroku_z17gfff8:1jfssa02hssqt1fqhqhjcbc3j6@ds133275.mlab.com:33275/heroku_z17gfff8
 //mongoose.connect("mongodb://localhost/mongoscr");
 
@@ -138,15 +143,10 @@ app.get("/articles/:id", function(req, res) {
   // ..and populate all of the notes associated with it
   .populate("note")
   // now, execute our query
-  .exec(function(error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    // Otherwise, send the doc to the browser as a json object
-    else {
-      res.json(doc);
-    }
+  .then(dbArticle => {
+    res.json(dbArticle);
+  }).catch(err => {
+    res.json(err);
   });
 });
 
