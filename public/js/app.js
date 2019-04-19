@@ -1,16 +1,16 @@
-//Handle Scrape button
-$("#scrapedd").on("click", function() {
+// scrape button
+$("#scraped").on("click", function() {
     $.ajax({
         method: "GET",
         url: "/scrape",
-    }).done(function(data) {
+    }).then(function(data) {
         console.log(data)
         window.location = "/"
     })
 console.log("hello")
 });
 
-//Handle Save Article button
+// save article button
 $(".save").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -21,7 +21,7 @@ $(".save").on("click", function() {
     })
 });
 
-//Handle Delete Article button
+// delete article button
 $(".delete").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -32,7 +32,7 @@ $(".delete").on("click", function() {
     })
 });
 
-//Handle Save Note button
+// save note button
 $(".saveNote").on("click", function() {
     var thisId = $(this).attr("data-id");
     if (!$("#noteText" + thisId).val()) {
@@ -55,7 +55,7 @@ $(".saveNote").on("click", function() {
     }
 });
 
-//Handle Delete Note button
+// delete button
 $(".deleteNote").on("click", function() {
     var noteId = $(this).attr("data-note-id");
     var articleId = $(this).attr("data-article-id");
